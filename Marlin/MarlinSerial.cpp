@@ -108,7 +108,7 @@ FORCE_INLINE void store_char(unsigned char c) {
 
 // Constructors ////////////////////////////////////////////////////////////////
 
-MarlinSerial::MarlinSerial() { }
+arlinSerial::MarlinSerial() { }
 
 // Public Methods //////////////////////////////////////////////////////////////
 
@@ -440,7 +440,7 @@ void MarlinSerial::printFloat(double number, uint8_t digits) {
 // Preinstantiate Objects //////////////////////////////////////////////////////
 
 
-MarlinSerial customizedSerial;
+arlinSerial customizedSerial;
 
 #endif // whole file
 #endif // !USBCON

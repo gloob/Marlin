@@ -25,10 +25,9 @@
 #include "temperature.h"
 
 void safe_delay(millis_t ms) {
-  while (ms > 50) {
+  while (ms > 0) {
+    delay(ms > 50 ? 50 : ms);
     ms -= 50;
-    delay(50);
     thermalManager.manage_heater();
   }
-  delay(ms);
 }

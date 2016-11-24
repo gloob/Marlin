@@ -169,6 +169,8 @@
   #include "pins_MKS_13.h"
 #elif MB(SAINSMART_2IN1)
   #include "pins_SAINSMART_2IN1.h"
+#elif MB(ANET_10)
+  #include "pins_ANET_10.h"
 #else
   #error "Unknown MOTHERBOARD value set in Configuration.h"
 #endif
@@ -453,8 +455,6 @@
     _X2_PINS _Y2_PINS _Z2_PINS \
     X_MS1_PIN, X_MS2_PIN, Y_MS1_PIN, Y_MS2_PIN, Z_MS1_PIN, Z_MS2_PIN \
   }
-
-#define HAS_DIGIPOTSS (PIN_EXISTS(DIGIPOTSS))
 
 #ifndef SCK_PIN
   #define SCK_PIN  SCK

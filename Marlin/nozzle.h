@@ -26,6 +26,7 @@
 #include "Marlin.h"
 #include "point_t.h"
 
+#if ENABLED(NOZZLE_CLEAN_FEATURE) || ENABLED(NOZZLE_PARK_FEATURE)
 /**
  * @brief Nozzle class
  *
@@ -192,4 +193,5 @@ class Nozzle {
     }
 };
 
+#endif
 #endif

@@ -32,7 +32,7 @@
   #define BOARD_NAME "Sanguinololu <1.2"
 #endif
 
-#define IS_MELZI (MB(MELZI) || MB(MELZI_MAKR3D))
+#define IS_MELZI (MB(MELZI) || MB(MELZI_MAKR3D) || MB(ANET_10))
 
 #define X_STEP_PIN         15
 #define X_DIR_PIN          21
@@ -165,6 +165,10 @@
   #endif //Panelolu2
 
   #define SD_DETECT_PIN         -1
+
+  #if ENABLED(ADC_KEYPAD)
+    #define ADC_KEYPAD_PIN       1
+  #endif
 
 #elif ENABLED(MAKRPANEL)
 

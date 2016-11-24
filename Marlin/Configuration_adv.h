@@ -130,7 +130,7 @@
  * Also, if the temperature is set to a value below mintemp, it will not be changed by autotemp.
  * On an Ultimaker, some initial testing worked with M109 S215 B260 F1 in the start.gcode
  */
-#define AUTOTEMP
+//#define AUTOTEMP
 #if ENABLED(AUTOTEMP)
   #define AUTOTEMP_OLDWEIGHT 0.98
 #endif
@@ -412,7 +412,7 @@
   // as SD_DETECT_PIN in your board's pins definitions.
   // This setting should be disabled unless you are using a push button, pulling the pin to ground.
   // Note: This is always disabled for ULTIPANEL (except ELB_FULL_GRAPHIC_CONTROLLER).
-  #define SD_DETECT_INVERTED
+  //#define SD_DETECT_INVERTED
 
   #define SD_FINISHED_STEPPERRELEASE true  //if sd support and the file is finished: disable steppers?
   #define SD_FINISHED_RELEASECOMMAND "M84 X Y Z E" // You might want to keep the z enabled so your bed stays in place.
@@ -523,7 +523,7 @@
 // @section extras
 
 // Arc interpretation settings:
-#define ARC_SUPPORT  // Disabling this saves ~2738 bytes
+//#define ARC_SUPPORT  // Disabling this saves ~2738 bytes
 #define MM_PER_ARC_SEGMENT 1
 #define N_ARC_CORRECTION 25
 
@@ -603,7 +603,7 @@ const unsigned int dropsegments = 5; //everything with less than this number of 
 
 // Add support for experimental filament exchange support M600; requires display
 #if ENABLED(ULTIPANEL)
-  // #define FILAMENT_CHANGE_FEATURE             // Enable filament exchange menu and M600 g-code (used for runout sensor too)
+  //#define FILAMENT_CHANGE_FEATURE             // Enable filament exchange menu and M600 g-code (used for runout sensor too)
   #if ENABLED(FILAMENT_CHANGE_FEATURE)
     #define FILAMENT_CHANGE_X_POS 3             // X position of hotend
     #define FILAMENT_CHANGE_Y_POS 3             // Y position of hotend

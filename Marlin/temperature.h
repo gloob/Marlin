@@ -219,7 +219,12 @@ class Temperature {
       static int current_raw_filwidth;  //Holds measured filament diameter - one extruder only
     #endif
 
+
   public:
+#ifdef ADC_KEYPAD
+	  static uint32_t current_ADCKey_raw;
+	  static uint8_t ADCKey_count;
+#endif
 
     /**
      * Instance Methods

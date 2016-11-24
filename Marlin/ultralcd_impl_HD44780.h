@@ -394,7 +394,7 @@ unsigned lcd_print(char c) { return charset_mapper(c); }
 
   void lcd_erase_line(int line) {
     lcd.setCursor(0, line);
-    for (int i = 0; i < LCD_WIDTH; i++)
+    for (uint8_t i = 0; i < LCD_WIDTH; i++)
       lcd_print(' ');
   }
 
@@ -406,7 +406,7 @@ unsigned lcd_print(char c) { return charset_mapper(c); }
       strncpy_P(tmp, text + i, min(len, LCD_WIDTH));
       lcd.setCursor(col, line);
       lcd_print(tmp);
-      delay(time / max(n, 1));
+      safe_delay(time / max(n, 1));
     }
   }
 
@@ -469,28 +469,28 @@ unsigned lcd_print(char c) { return charset_mapper(c); }
 
     #define CENTER_OR_SCROLL(STRING,DELAY) \
       lcd_erase_line(3); \
-      if (strlen(STRING) <= LCD_WIDTH) { \
-        lcd.setCursor((LCD_WIDTH - lcd_strlen_P(PSTR(STRING))) / 2, 3); \
-        lcd_printPGM(PSTR(STRING)); \
+      if (lcd_strlen_P(STRING) <= LCD_WIDTH) { \
+        lcd.setCursor((LCD_WIDTH - lcd_strlen_P(STRING)) / 2, 3); \
+        lcd_printPGM(STRING); \
         safe_delay(DELAY); \
       } \
       else { \
-        lcd_scroll(0, 3, PSTR(STRING), LCD_WIDTH, DELAY); \
+        lcd_scroll(0, 3, STRING, LCD_WIDTH, DELAY); \
       }
 
     #ifdef STRING_SPLASH_LINE1
       //
       // Show the Marlin logo with splash line 1
       //
-      if (LCD_EXTRA_SPACE >= strlen(STRING_SPLASH_LINE1) + 1) {
+      if (LCD_EXTRA_SPACE >= lcd_strlen(STRING_SPLASH_LINE1) + 1) {
         //
         // Show the Marlin logo, splash line1, and splash line 2
         //
         logo_lines(PSTR(" " STRING_SPLASH_LINE1));
         #ifdef STRING_SPLASH_LINE2
-          CENTER_OR_SCROLL(STRING_SPLASH_LINE2, 2000);
+          CENTER_OR_SCROLL(PSTR(STRING_SPLASH_LINE2), BOOTSCREEN_TIMEOUT);
         #else
-          safe_delay(2000);
+          safe_delay(BOOTSCREEN_TIMEOUT);
         #endif
       }
       else {
@@ -499,14 +499,21 @@ unsigned lcd_print(char c) { return charset_mapper(c); }
         // After a delay show splash line 2, if it exists
         //
         #ifdef STRING_SPLASH_LINE2
-          #define _SPLASH_WAIT_1 1500
+		  #ifndef _SPLASH_WAIT_1
+            #define _SPLASH_WAIT_1 (BOOTSCREEN_TIMEOUT / 2)
+		  #endif
+		  #ifndef _SPLASH_WAIT_2
+			#define _SPLASH_WAIT_2 (BOOTSCREEN_TIMEOUT / 2)
+		  #endif
         #else
-          #define _SPLASH_WAIT_1 2000
+		  #ifndef _SPLASH_WAIT_1
+			#define _SPLASH_WAIT_1 BOOTSCREEN_TIMEOUT
+		  #endif
         #endif
         logo_lines(PSTR(""));
-        CENTER_OR_SCROLL(STRING_SPLASH_LINE1, _SPLASH_WAIT_1);
+        CENTER_OR_SCROLL(PSTR(STRING_SPLASH_LINE1), _SPLASH_WAIT_1);
         #ifdef STRING_SPLASH_LINE2
-          CENTER_OR_SCROLL(STRING_SPLASH_LINE2, 1500);
+          CENTER_OR_SCROLL(PSTR(STRING_SPLASH_LINE2), _SPLASH_WAIT_2);
         #endif
       }
     #elif defined(STRING_SPLASH_LINE2)
@@ -515,24 +522,27 @@ unsigned lcd_print(char c) { return charset_mapper(c); }
       //
       if (LCD_EXTRA_SPACE >= strlen(STRING_SPLASH_LINE2) + 1) {
         logo_lines(PSTR(" " STRING_SPLASH_LINE2));
-        safe_delay(2000);
+        safe_delay(BOOTSCREEN_TIMEOUT);
       }
       else {
         logo_lines(PSTR(""));
-        CENTER_OR_SCROLL(STRING_SPLASH_LINE2, 2000);
+        CENTER_OR_SCROLL(STRING_SPLASH_LINE2, BOOTSCREEN_TIMEOUT);
       }
     #else
       //
       // Show only the Marlin logo
       //
       logo_lines(PSTR(""));
-      safe_delay(2000);
+      safe_delay(BOOTSCREEN_TIMEOUT);
     #endif
+
     lcd_set_custom_characters(
     #if ENABLED(LCD_PROGRESS_BAR)
       false
     #endif
     );
+
+	lcd_implementation_clear();
   }
 
 #endif // SHOW_BOOTSCREEN
