@@ -126,7 +126,7 @@
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-//#define CUSTOM_MACHINE_NAME "3D Printer"
+//#define CUSTOM_MACHINE_NAME "Anet A8"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -480,9 +480,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // uncomment "//" the lines below to select the correct sensor simply delete the double //
 // BELOW IS FOR THE FRONT MOUNTED SENSOR WITH 3D PRINTED MOUNT
-#define X_PROBE_OFFSET_FROM_EXTRUDER -28  // X offset: -left  +right  [of the nozzle]
-#define Y_PROBE_OFFSET_FROM_EXTRUDER -45  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER 0    // Z offset: -below +above  [the nozzle]
+#define X_PROBE_OFFSET_FROM_EXTRUDER -25   // X offset: -left  +right  [of the nozzle]
+#define Y_PROBE_OFFSET_FROM_EXTRUDER -45   // Y offset: -front +behind [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER  -2   // Z offset: -below +above  [the nozzle]
 
 //AND THE LINES BELOW HERE ARE FOR THE OFFICIAL ANET REAR MOUNTED SENSOR
 //#define X_PROBE_OFFSET_FROM_EXTRUDER -1  // X offset: -left  +right  [of the nozzle]
@@ -985,7 +985,7 @@
 //#define ULTRA_LCD   // Character based
 //#define DOGLCD      // Full graphics display
 
-//#define ANET_KEYPAD_LCD
+#define ANET_KEYPAD_LCD
 //#define ANET_FULL_GRAPHICS_LCD
 
 //

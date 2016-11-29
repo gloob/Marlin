@@ -68,7 +68,7 @@
   /**
    * Defines a generic printer name to be output to the LCD after booting Marlin.
    */
-  #define MACHINE_NAME "Anet A8"
+  #define MACHINE_NAME "AnetA8"
 
   /**
    * The SOURCE_CODE_URL is the location where users will find the Marlin Source
@@ -87,6 +87,6 @@
    * The WEBSITE_URL is the location where users can get more information such as
    * documentation about a specific Marlin release.
    */
-  #define WEBSITE_URL "https://github.com/gloob/Marlin-Anet-A8/blob/master/README.md"
+  #define WEBSITE_URL "http://marlinfw.org"
 
 #endif // USE_AUTOMATIC_VERSIONING
